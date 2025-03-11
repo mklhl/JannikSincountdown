@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown al 5 maggio 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            color:#ff8800;
+            background-color: #ffebd8;
+        }
+        #countdown {
+            font-size: 2em;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <h1>JANNIK SINNER WILL PLAY IN: </h1>
+    <p id="countdown"></p>
+
+    <script>
+        function startCountdown(targetDate) {
+            function updateCountdown() {
+                let now = new Date().getTime();
+                let distance = targetDate - now;
+
+                if (distance < 0) {
+                    document.getElementById('countdown').textContent = "Tempo scaduto!";
+                    clearInterval(interval);
+                    return;
+                }
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').textContent = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            updateCountdown(); // Esegui subito per evitare il primo secondo di attesa
+            let interval = setInterval(updateCountdown, 1000);
+        }
+
+        let targetDate = new Date("May 5, 2025 00:00:00").getTime();
+        startCountdown(targetDate);
+    </script>
+</body>
+</html>
